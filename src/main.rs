@@ -9,6 +9,7 @@ mod systems;
 mod configs;
 mod debug;
 
+const MAX_ENTITIES: usize = 2;
 fn main() {
     let (mut rl, thread) = raylib::init()
         .size(SCREEN_WIDTH, SCREEN_HEIGHT)

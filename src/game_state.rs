@@ -1,6 +1,5 @@
-use crate::components::state::StateComponent;
+use crate::{components::state::StateComponent, MAX_ENTITIES};
 
-const MAX_ENTITIES: usize = 2;
 
 pub struct GameState {
     pub frame_count: i32,

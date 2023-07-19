@@ -19,7 +19,6 @@ pub fn show_debug_stats(d: &mut RaylibDrawHandle, game_state: &mut GameState) {
 
 fn move_player(game_state: &mut GameState) {
     let player = &mut game_state.state[0].context;
-
     if player.inputs.forward {
         player.physics.velocity.x = 1;
     } else if player.inputs.back {

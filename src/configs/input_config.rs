@@ -1,4 +1,11 @@
 use raylib::prelude::{GamepadButton, KeyboardKey};
+
+use crate::MAX_ENTITIES;
+#[derive(Default, Debug, Clone, Copy)]
+pub struct PlayerInput {
+    pub keybard: [KbConfig; MAX_ENTITIES],
+    pub gamepad: [PadConfig; MAX_ENTITIES],
+}
 #[derive(Debug, Clone, Copy)]
 pub struct KbConfig {
     pub up: KeyboardKey,
