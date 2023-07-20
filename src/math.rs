@@ -15,3 +15,9 @@ impl Add for IntVector2D {
         }
     }
 }
+
+// World to screen conversion
+#[allow(dead_code)]
+pub fn world_to_screen(coordinate: i32) -> i32 {
+    coordinate / 1000
+}

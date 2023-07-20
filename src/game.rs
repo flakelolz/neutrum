@@ -28,12 +28,12 @@ pub fn game_loop(
 
     // Initial position of player
     game_state.state[P1].context.physics.position = IntVector2D {
-        x: 300,
-        y: 540,
+        x: 300000,
+        y: 540000,
     };
     game_state.state[P2].context.physics.position = IntVector2D {
-        x: 800,
-        y: 540,
+        x: 800000,
+        y: 540000,
     };
 
     while !rl.window_should_close() {

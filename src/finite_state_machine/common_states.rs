@@ -44,7 +44,7 @@ impl WalkingForward {
             return;
         }
 
-        context.physics.velocity.x = 5;
+        context.physics.velocity.x = 5000;
 
         if !context.inputs.forward {
             context.transition_to_state(StateID::Standing);
@@ -72,7 +72,7 @@ impl WalkingBackward {
             return;
         }
 
-        context.physics.velocity.x = -5;
+        context.physics.velocity.x = -5000;
 
         if !context.inputs.back {
             context.transition_to_state(StateID::Standing);

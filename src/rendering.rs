@@ -3,7 +3,7 @@ use raylib::{
     texture::Texture2D,
 };
 
-use crate::game_state::GameState;
+use crate::{game_state::GameState, math::world_to_screen};
 
 pub fn render_player(
     d: &mut RaylibDrawHandle,
@@ -11,8 +11,8 @@ pub fn render_player(
     texture: &Texture2D,
     player: usize,
 ) {
-    let x_pos = game_state.state[player].context.physics.position.x as f32;
-    let y_pos = game_state.state[player].context.physics.position.y as f32;
+    let x_pos = world_to_screen(game_state.state[player].context.physics.position.x) as f32;
+    let y_pos = world_to_screen(game_state.state[player].context.physics.position.y) as f32;
     let x_size = 256.0;
     let y_size = 256.0;
 
