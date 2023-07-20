@@ -1,11 +1,12 @@
-const SCREEN_WIDTH: i32 = 640;
-const SCREEN_HEIGHT: i32 = 480;
+const SCREEN_WIDTH: i32 = 1280;
+const SCREEN_HEIGHT: i32 = 720;
 mod game;
 mod game_state;
 mod finite_state_machine;
 mod components;
 mod math;
 mod systems;
+mod rendering;
 mod configs;
 mod debug;
 
@@ -16,6 +17,6 @@ fn main() {
         .title("NEUCH")
         .build();
     rl.set_target_fps(60);
-    //
+    
     game::game_loop(&mut rl, thread, SCREEN_WIDTH, SCREEN_HEIGHT);
 }

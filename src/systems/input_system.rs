@@ -20,17 +20,3 @@ pub fn update_inputs(
             || rl.is_gamepad_button_down(i, input_config.gamepad[entity].a);
     }
 }
-
-pub fn update_input(rl: &mut RaylibHandle, game_state: &mut GameState, config: &PlayerInput, player: usize) {
-
-    let inputs = &mut game_state.state[player].context.inputs;
-    let i = player as i32;
-
-    inputs.forward = rl.is_key_down(config.keybard[player].forward)
-        || rl.is_gamepad_button_down(i, config.gamepad[player].forward);
-    inputs.back = rl.is_key_down(config.keybard[player].back)
-        || rl.is_gamepad_button_down(i, config.gamepad[player].back);
-    inputs.a = rl.is_key_down(config.keybard[player].a)
-        || rl.is_gamepad_button_down(i, config.gamepad[player].a);
-
-}

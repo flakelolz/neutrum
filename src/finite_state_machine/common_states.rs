@@ -41,7 +41,7 @@ impl WalkingForward {
             return;
         }
 
-        context.physics.velocity.x = 40;
+        context.physics.velocity.x = 5;
 
         if !context.inputs.forward {
             context.transition_to_state(StateID::Standing);
@@ -69,7 +69,7 @@ impl WalkingBackward {
             return;
         }
 
-        context.physics.velocity.x = -40;
+        context.physics.velocity.x = -5;
 
         if !context.inputs.back {
             context.transition_to_state(StateID::Standing);
@@ -106,6 +106,10 @@ impl Attack {
 
     pub fn on_update(context: &mut StateContext) {
         // println!("Attack on_update");
+        context.physics.velocity.x = 0;
+        if !context.inputs.a {
+            context.transition_to_state(StateID::Standing);
+        }
     }
 
     pub fn on_exit(context: &mut StateContext) {

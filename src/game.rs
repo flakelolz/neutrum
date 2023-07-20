@@ -1,11 +1,13 @@
 use raylib::prelude::*;
 
 use crate::{
+    configs::input_config::PlayerInput,
     debug::debug_stats::show_debug_stats,
     game_state::GameState,
+    rendering::render_player,
     systems::{
-        action_system::update_actions, input_system::{update_inputs, update_input}, physics_system::update_physics,
-    }, configs::input_config::PlayerInput,
+        action_system::update_actions, input_system::update_inputs, physics_system::update_physics,
+    }, math::IntVector2D,
 };
 #[allow(unused_variables)]
 pub fn game_loop(
@@ -14,17 +16,31 @@ pub fn game_loop(
     screen_width: i32,
     screen_height: i32,
 ) {
+    const P1: usize = 0;
+    const P2: usize = 1;
+    let texture = rl
+        .load_texture(&thread, "assets/character.png")
+        .expect("texture not found");
     let mut game_state = GameState::default();
-    game_state.state[0].processor.registry.init_states();
-    game_state.state[1].processor.registry.init_states();
     let input_config = PlayerInput::default();
+    game_state.state[P1].processor.registry.init_states();
+    game_state.state[P2].processor.registry.init_states();
+
+    // Initial position of player
+    game_state.state[P1].context.physics.position = IntVector2D {
+        x: 300,
+        y: 240,
+    };
+    game_state.state[P2].context.physics.position = IntVector2D {
+        x: 800,
+        y: 240,
+    };
 
     while !rl.window_should_close() {
         // INPUTS
-        // update_inputs(rl, &mut game_state, &input_config);
-        update_input(rl, &mut game_state, &input_config, 0);
+        update_inputs(rl, &mut game_state, &input_config);
 
-        // SIMULATION 
+        // SIMULATION
         update_physics(&mut game_state);
         update_actions(&mut game_state);
         game_state.frame_count += 1;
@@ -33,9 +49,7 @@ pub fn game_loop(
         let mut d = rl.begin_drawing(&thread);
         d.clear_background(Color::GRAY);
 
-        let p1_pos_x = game_state.state[0].context.physics.position.x;
-        let p1_pos_y = game_state.state[0].context.physics.position.y;
-        d.draw_circle(p1_pos_x, p1_pos_y, 30.0, Color::BLACK);
+        render_player(&mut d, &game_state, &texture, P1);
 
         // DEBUG
         show_debug_stats(&mut d, &mut game_state);

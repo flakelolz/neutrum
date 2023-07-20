@@ -14,7 +14,7 @@ pub fn show_debug_stats(d: &mut RaylibDrawHandle, game_state: &mut GameState) {
         d.draw_text("A", 30, 40, 20, Color::GREEN);
     }
 
-    move_player(game_state);
+    // move_player(game_state);
 }
 
 fn move_player(game_state: &mut GameState) {

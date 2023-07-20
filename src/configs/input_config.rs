@@ -1,11 +1,22 @@
 use raylib::prelude::{GamepadButton, KeyboardKey};
 
 use crate::MAX_ENTITIES;
-#[derive(Default, Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 pub struct PlayerInput {
     pub keybard: [KbConfig; MAX_ENTITIES],
     pub gamepad: [PadConfig; MAX_ENTITIES],
 }
+
+impl Default for PlayerInput {
+    fn default() -> Self {
+        Self {
+            keybard: [KbConfig::p1_keys(), KbConfig::p2_keys()],
+            gamepad: Default::default(),
+        }
+    }
+
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct KbConfig {
     pub up: KeyboardKey,
@@ -16,6 +27,34 @@ pub struct KbConfig {
     pub b: KeyboardKey,
     pub c: KeyboardKey,
     pub k: KeyboardKey,
+}
+
+impl KbConfig {
+    pub fn p1_keys() -> Self {
+        Self {
+            up: KeyboardKey::KEY_W,
+            down: KeyboardKey::KEY_S,
+            back: KeyboardKey::KEY_A,
+            forward: KeyboardKey::KEY_D,
+            a: KeyboardKey::KEY_J,
+            b: KeyboardKey::KEY_K,
+            c: KeyboardKey::KEY_L,
+            k: KeyboardKey::KEY_N,
+        }
+    }
+
+    pub fn p2_keys() -> Self {
+        Self {
+            up: KeyboardKey::KEY_UP,
+            down: KeyboardKey::KEY_DOWN,
+            back: KeyboardKey::KEY_LEFT,
+            forward: KeyboardKey::KEY_RIGHT,
+            a: KeyboardKey::KEY_V,
+            b: KeyboardKey::KEY_C,
+            c: KeyboardKey::KEY_X,
+            k: KeyboardKey::KEY_Z,
+        }
+    }
 }
 
 impl Default for KbConfig {
