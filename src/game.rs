@@ -29,11 +29,11 @@ pub fn game_loop(
     // Initial position of player
     game_state.state[P1].context.physics.position = IntVector2D {
         x: 300,
-        y: 240,
+        y: 540,
     };
     game_state.state[P2].context.physics.position = IntVector2D {
         x: 800,
-        y: 240,
+        y: 540,
     };
 
     while !rl.window_should_close() {
@@ -47,7 +47,7 @@ pub fn game_loop(
 
         // RENDERING
         let mut d = rl.begin_drawing(&thread);
-        d.clear_background(Color::GRAY);
+        d.clear_background(Color::BLACK);
 
         render_player(&mut d, &game_state, &texture, P1);
 

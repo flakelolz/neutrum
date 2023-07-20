@@ -1,4 +1,3 @@
-#![allow(unused)]
 use crate::finite_state_machine::{
     state_context::StateContext, state_machine::StateMachineProcessor,
 };

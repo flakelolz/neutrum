@@ -1,5 +1,8 @@
-#![allow(unused)]
-use crate::finite_state_machine::{state_machine::*, state_transitions::{common_attack_transitions, common_jump_transitions}};
+#![allow(unused_variables)]
+use crate::finite_state_machine::{
+    state_machine::*,
+    state_transitions::{common_attack_transitions, common_jump_transitions},
+};
 
 use super::{state_context::StateContext, state_transitions::common_transitions};
 
@@ -33,7 +36,7 @@ impl WalkingForward {
         // println!("WalkingForward on_update");
 
         if common_attack_transitions(context) {
-            // Transitions to attack 
+            // Transitions to attack
         } else if common_jump_transitions(context) {
             // Transitions to jump
         } else if context.inputs.back {
@@ -61,7 +64,7 @@ impl WalkingBackward {
     pub fn on_update(context: &mut StateContext) {
         // println!("WalkingBackward on_update");
         if common_attack_transitions(context) {
-            // Transitions to attack 
+            // Transitions to attack
         } else if common_jump_transitions(context) {
             // Transitions to jump
         } else if context.inputs.forward {
@@ -74,7 +77,6 @@ impl WalkingBackward {
         if !context.inputs.back {
             context.transition_to_state(StateID::Standing);
         }
-
     }
     pub fn on_exit(context: &mut StateContext) {
         println!("WalkingBackward on_exit");
@@ -89,7 +91,7 @@ impl Crouching {
     }
 
     pub fn on_update(context: &mut StateContext) {
-        // println!("Crouching on_update");
+        println!("Crouching on_update");
     }
 
     pub fn on_exit(context: &mut StateContext) {
@@ -115,5 +117,31 @@ impl Attack {
     pub fn on_exit(context: &mut StateContext) {
         println!("Attack on_exit");
         println!("Transition to: {:?}", context.next_state);
+    }
+}
+
+pub struct Reaction;
+impl Reaction {
+    pub fn on_enter(context: &mut StateContext) {
+        println!("Reaction on_enter");
+    }
+    pub fn on_update(context: &mut StateContext) {
+        println!("Reaction on_update");
+    }
+    pub fn on_exit(context: &mut StateContext) {
+        println!("Reaction on_exit");
+    }
+}
+
+pub struct GuardReaction;
+impl GuardReaction {
+    pub fn on_enter(context: &mut StateContext) {
+        println!("GuardReaction on_enter");
+    }
+    pub fn on_update(context: &mut StateContext) {
+        println!("GuardReaction on_update");
+    }
+    pub fn on_exit(context: &mut StateContext) {
+        println!("GuardReaction on_exit");
     }
 }

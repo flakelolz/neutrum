@@ -1,4 +1,3 @@
-#![allow(unused)]
 use super::{
     state_context::StateContext,
     state_machine::{StateID, StateMachineProcessor},

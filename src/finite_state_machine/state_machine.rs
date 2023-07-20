@@ -1,7 +1,3 @@
-#![allow(unused)]
-
-use crate::components::{inputs::InputComponent, physics::PhysicsComponent};
-
 use super::{common_states::*, state_context::StateContext, state_transitions::handle_transition};
 
 const MAX_STATES: usize = 10;
@@ -84,11 +80,25 @@ impl StateRegistry {
             on_exit: Attack::on_exit,
         };
 
+        let reaction_callbacks = StateCallbacks {
+            on_enter: Reaction::on_enter,
+            on_update: Reaction::on_update,
+            on_exit: Reaction::on_exit,
+        };
+
+        let guard_reaction_callbacks = StateCallbacks {
+            on_enter: GuardReaction::on_enter,
+            on_update: GuardReaction::on_update,
+            on_exit: GuardReaction::on_exit,
+        };
+
         self.register_state(StateID::Standing, standing_callbacks);
         self.register_state(StateID::Crouching, crouching_callbacks);
         self.register_state(StateID::WalkingForward, walking_forward_callbacks);
         self.register_state(StateID::WalkingBackward, walking_backward_callbacks);
         self.register_state(StateID::Attack, attack_callbacks);
+        self.register_state(StateID::Reaction, reaction_callbacks);
+        self.register_state(StateID::GuardReaction, guard_reaction_callbacks);
     }
 }
 
