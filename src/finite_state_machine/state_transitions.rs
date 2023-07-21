@@ -1,9 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{
-    character_data::{find_action, ActionProperties, CharacterProperties},
-    game_state::GameData,
-};
+use crate::character_data::{find_action, ActionProperties, CharacterProperties};
 
 use super::{
     state_context::StateContext,
@@ -58,7 +55,6 @@ pub fn handle_transition(
             Some(action) => action,
             None => ActionProperties::default(),
         };
-
 
         context.reaction.attack_has_hit = false;
 

@@ -53,7 +53,6 @@ impl HitboxGroup {
     }
 }
 
-
 #[derive(Default, Debug, Clone, Copy)]
 pub struct TimelineComponent {
     pub frames_elapsed: i32,
@@ -68,6 +67,7 @@ pub struct ReactionComponent {
     pub attack_has_hit: bool,
 }
 
+#[allow(dead_code)]
 #[derive(Default, Debug, Clone, Copy)]
 pub enum JumpFlags {
     #[default]
@@ -80,7 +80,6 @@ pub enum JumpFlags {
 pub struct ActionFlagsComponent {
     pub jump_flags: JumpFlags,
 }
-
 
 #[derive(Default, Debug, Clone, Copy)]
 pub struct HitEvent {
@@ -125,7 +124,6 @@ mod tests {
         assert!(group.hitboxes.is_empty());
 
         group.hitboxes.push(hitbox);
-
 
         assert_eq!(group.hitboxes.len(), 1);
         assert_eq!(group.hitboxes[0].left, hitbox.left);

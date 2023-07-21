@@ -61,6 +61,7 @@ pub fn get_translated_active_hitboxes(
     count
 }
 
+#[allow(dead_code)]
 pub fn get_vulnerable_hitboxes(
     hitbox_pool: &mut [Hitbox],
     action: &ActionProperties,

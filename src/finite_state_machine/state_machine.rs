@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{character_data::CharacterProperties, game_state::GameData};
+use crate::character_data::CharacterProperties;
 
 use super::{
     common_states::*, state_context::StateContext, state_registry::StateRegistry,
