@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use crate::{
     character_data::{generate_action_map, load_asset, CharacterProperties},
-    components::StateComponent,
+    components::{Hitbox, StateComponent, HitEvent},
     MAX_ENTITIES,
 };
 
@@ -12,6 +12,10 @@ pub struct GameState {
     pub entity_count: usize,
     pub state: [StateComponent; MAX_ENTITIES],
     pub game_data: GameData,
+    pub vulnerable_hitbox_scratch: [[Hitbox; 32]; MAX_ENTITIES],
+    pub attack_hitbox_scratch: [[Hitbox; 32]; MAX_ENTITIES],
+    pub push_hitbox_scratch: [[Hitbox; 32]; MAX_ENTITIES],
+    pub hit_events: Vec<HitEvent>
 }
 
 impl Default for GameState {
@@ -21,6 +25,10 @@ impl Default for GameState {
             entity_count: MAX_ENTITIES,
             state: [StateComponent::default(); MAX_ENTITIES],
             game_data: GameData::init(),
+            vulnerable_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
+            attack_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
+            push_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
+            hit_events: Vec::with_capacity(MAX_ENTITIES),
         }
     }
 }

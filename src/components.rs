@@ -81,6 +81,17 @@ pub struct ActionFlagsComponent {
     pub jump_flags: JumpFlags,
 }
 
+
+#[derive(Default, Debug, Clone, Copy)]
+pub struct HitEvent {
+    pub attacker_id: usize,
+    pub defender_id: usize,
+    pub hitstun: i32,
+    pub guardstun: i32,
+    pub hitstop: i32,
+    pub knockback: i32,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

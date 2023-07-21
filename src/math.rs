@@ -1,6 +1,6 @@
 use std::ops::Add;
 
-use crate::components::{Hitbox, HitboxGroup};
+use crate::{components::{Hitbox, HitboxGroup}, character_data::ActionProperties};
 
 #[derive(Default, Debug, Clone, Copy)]
 pub struct IntVector2D {
@@ -39,7 +39,7 @@ pub fn do_hiboxes_overlap(a: Hitbox, b: Hitbox) -> bool {
     !not_overlapping
 }
 
-fn get_translated_active_hitboxes(
+pub fn get_translated_active_hitboxes(
     hitbox_groups: &mut [HitboxGroup],
     hitboxes: &mut [Hitbox],
     offset: IntVector2D,
@@ -60,3 +60,37 @@ fn get_translated_active_hitboxes(
 
     count
 }
+
+pub fn get_vulnerable_hitboxes(
+    hitbox_pool: &mut [Hitbox],
+    action: &ActionProperties,
+    frame: i32,
+    position: IntVector2D,
+) -> usize {
+    let mut pool_index: usize = 0;
+
+    // Find all active hitboxes
+    for hitbox_group in action.vulnerable_hitbox_groups.iter() {
+        if hitbox_group.is_active_on_frame(frame) {
+            for hitbox in hitbox_group.hitboxes.iter() {
+                assert!(pool_index <= hitbox_pool.len());
+
+                // If we exceed the hitbox pool size, return the size of the hitbox pool and write no more hitboxes.
+                if pool_index >= hitbox_pool.len() {
+                    return hitbox_pool.len();
+                }
+
+                // Translate the hitbox by the character position.
+                hitbox_pool[pool_index] = Hitbox {
+                    top: hitbox.top + position.y,
+                    left: hitbox.left + position.x,
+                    bottom: hitbox.bottom + position.y,
+                    right: hitbox.right + position.x,
+                };
+                pool_index += 1;
+            }
+        }
+    }
+    pool_index
+}
+

@@ -23,14 +23,14 @@ pub enum StateID {
 impl StateID {
     pub fn get_name(&self) -> &'static str {
         match self {
-            Self::Standing => "standing",
-            Self::Crouching => "crouching",
-            Self::WalkingForward => "walking_forward",
-            Self::WalkingBackward => "walking_backward",
-            Self::Jump => "jump",
-            Self::Attack => "attack",
-            Self::Reaction => "reaction",
-            Self::GuardReaction => "guard_reaction",
+            Self::Standing => "Standing",
+            Self::Crouching => "Crouching",
+            Self::WalkingForward => "WalkingForward",
+            Self::WalkingBackward => "WalkingBackward",
+            Self::Jump => "Jump",
+            Self::Attack => "Attack",
+            Self::Reaction => "Reaction",
+            Self::GuardReaction => "GuardReaction",
         }
     }
 }

@@ -7,7 +7,7 @@ use crate::{
     math::IntVector2D,
     rendering::render_player,
     systems::{
-        action_system::update_actions, input_system::update_inputs, physics_system::update_physics,
+        action_system::update_actions, input_system::update_inputs, physics_system::update_physics, collision_system::update_collision,
     },
 };
 pub fn game_loop(rl: &mut RaylibHandle, thread: RaylibThread) {
@@ -38,6 +38,7 @@ pub fn game_loop(rl: &mut RaylibHandle, thread: RaylibThread) {
         // SIMULATION
         update_physics(&mut game_state);
         update_actions(&mut game_state);
+        update_collision(&mut game_state);
         game_state.frame_count += 1;
 
         // RENDERING

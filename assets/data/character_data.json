@@ -8,7 +8,7 @@
     },
     "actions": [
         {
-            "name": "standing",
+            "name": "Standing",
             "duration": 100,
             "is_looping": true,
             "vulnerable_hitbox_groups": [
@@ -48,7 +48,7 @@
             ]
         },
         {
-            "name": "crouching",
+            "name": "Crouching",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -88,7 +88,7 @@
             ]
         },
         {
-            "name": "walking_forward",
+            "name": "WalkingForward",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -128,7 +128,7 @@
             ]
         },
         {
-            "name": "walking_backward",
+            "name": "WalkingBackward",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -168,7 +168,7 @@
             ]
         },
         {
-            "name": "jump",
+            "name": "Jump",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -215,7 +215,7 @@
             ]
         },
         {
-            "name": "attack",
+            "name": "Attack",
             "duration": 30,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -262,7 +262,7 @@
             ]
         },
         {
-            "name": "reaction",
+            "name": "Reaction",
             "duration": 100,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -296,7 +296,7 @@
             ]
         },
         {
-            "name": "guard_reaction",
+            "name": "GuardReaction",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
