@@ -27,10 +27,10 @@ impl Standing {
     }
 }
 
-pub struct WalkingForward;
-impl WalkingForward {
+pub struct WalkingForwards;
+impl WalkingForwards {
     pub fn on_enter(context: &mut StateContext) {
-        println!("WalkingForward on_enter");
+        println!("WalkingForwards on_enter");
     }
     pub fn on_update(context: &mut StateContext) {
         // println!("WalkingForward on_update");
@@ -40,7 +40,7 @@ impl WalkingForward {
         } else if common_jump_transitions(context) {
             // Transitions to jump
         } else if context.inputs.back {
-            context.transition_to_state(StateID::WalkingBackward);
+            context.transition_to_state(StateID::WalkingBackwards);
             return;
         }
 
@@ -51,15 +51,15 @@ impl WalkingForward {
         }
     }
     pub fn on_exit(context: &mut StateContext) {
-        println!("WalkingForward on_exit");
+        println!("WalkingForwards on_exit");
         println!("Transition to: {:?}", context.next_state);
     }
 }
 
-pub struct WalkingBackward;
-impl WalkingBackward {
+pub struct WalkingBackwards;
+impl WalkingBackwards {
     pub fn on_enter(context: &mut StateContext) {
-        println!("WalkingBackward on_enter");
+        println!("WalkingBackwards on_enter");
     }
     pub fn on_update(context: &mut StateContext) {
         // println!("WalkingBackward on_update");
@@ -68,7 +68,7 @@ impl WalkingBackward {
         } else if common_jump_transitions(context) {
             // Transitions to jump
         } else if context.inputs.forward {
-            context.transition_to_state(StateID::WalkingForward);
+            context.transition_to_state(StateID::WalkingForwards);
             return;
         }
 
@@ -79,7 +79,7 @@ impl WalkingBackward {
         }
     }
     pub fn on_exit(context: &mut StateContext) {
-        println!("WalkingBackward on_exit");
+        println!("WalkingBackwards on_exit");
         println!("Transition to: {:?}", context.next_state);
     }
 }
@@ -131,7 +131,7 @@ impl Reaction {
         println!("Reaction on_enter");
     }
     pub fn on_update(context: &mut StateContext) {
-        println!("Reaction on_update");
+        // println!("Reaction on_update");
     }
     pub fn on_exit(context: &mut StateContext) {
         println!("Reaction on_exit");

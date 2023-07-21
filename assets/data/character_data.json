@@ -88,7 +88,7 @@
             ]
         },
         {
-            "name": "WalkingForward",
+            "name": "WalkingForwards",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -128,7 +128,7 @@
             ]
         },
         {
-            "name": "WalkingBackward",
+            "name": "WalkingBackwards",
             "duration": 0,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
@@ -216,7 +216,7 @@
         },
         {
             "name": "Attack",
-            "duration": 30,
+            "duration": 24,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
                 {
@@ -234,7 +234,7 @@
             ],
             "attack_hitbox_groups": [
                 {
-                    "start_frame": 5,
+                    "start_frame": 4,
                     "duration": 4,
                     "hitboxes": [
                         {
@@ -297,7 +297,7 @@
         },
         {
             "name": "GuardReaction",
-            "duration": 0,
+            "duration": 100,
             "is_looping": false,
             "vulnerable_hitbox_groups": [
                 {

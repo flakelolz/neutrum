@@ -9,28 +9,31 @@ use super::{
 
 #[derive(Default, Debug, Copy, Clone, PartialEq)]
 pub enum StateID {
-    #[default]
     Standing,
     Crouching,
-    WalkingForward,
-    WalkingBackward,
+    WalkingForwards,
+    WalkingBackwards,
     Jump,
     Attack,
     Reaction,
     GuardReaction,
+    #[default]
+    Nothing,
 }
+// TODO: separate jump into jump_start, jump_apex and jump_end
 
 impl StateID {
     pub fn get_name(&self) -> &'static str {
         match self {
             Self::Standing => "Standing",
             Self::Crouching => "Crouching",
-            Self::WalkingForward => "WalkingForward",
-            Self::WalkingBackward => "WalkingBackward",
+            Self::WalkingForwards => "WalkingForwards",
+            Self::WalkingBackwards => "WalkingBackwards",
             Self::Jump => "Jump",
             Self::Attack => "Attack",
             Self::Reaction => "Reaction",
             Self::GuardReaction => "GuardReaction",
+            Self::Nothing => "Nothing",
         }
     }
 }
@@ -52,10 +55,19 @@ impl Default for StateCallbacks {
     }
 }
 
-#[derive(Default, Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 pub struct StateMachineProcessor {
     pub registry: StateRegistry,
     pub current_state: StateID,
+}
+
+impl Default for StateMachineProcessor {
+    fn default() -> Self {
+        Self {
+            registry: StateRegistry::default(),
+            current_state: StateID::Standing,
+        }
+    }
 }
 
 impl StateMachineProcessor {
@@ -81,7 +93,7 @@ mod tests {
     fn state_name() {
         let fsm = StateMachineProcessor::default();
         assert_eq!(fsm.current_state, StateID::Standing);
-        assert_eq!(fsm.current_state.get_name(), "standing");
-        assert_eq!(StateID::Reaction.get_name(), "reaction");
+        assert_eq!(fsm.current_state.get_name(), "Standing");
+        assert_eq!(StateID::Reaction.get_name(), "Reaction");
     }
 }

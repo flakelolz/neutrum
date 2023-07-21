@@ -84,10 +84,10 @@ pub fn common_transitions(context: &mut StateContext) -> bool {
     } else if common_jump_transitions(context) {
         return true;
     } else if context.inputs.forward {
-        context.transition_to_state(StateID::WalkingForward);
+        context.transition_to_state(StateID::WalkingForwards);
         return true;
     } else if context.inputs.back {
-        context.transition_to_state(StateID::WalkingBackward);
+        context.transition_to_state(StateID::WalkingBackwards);
         return true;
     }
     return false;

@@ -5,18 +5,18 @@ use super::{
     state_machine::{StateCallbacks, StateID},
 };
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Default, Debug, Clone, Copy)]
 pub struct StateRegistry {
     pub common_states: [StateCallbacks; MAX_STATES],
 }
 
-impl Default for StateRegistry {
-    fn default() -> Self {
-        Self {
-            common_states: [StateCallbacks::default(); MAX_STATES],
-        }
-    }
-}
+// impl Default for StateRegistry {
+//     fn default() -> Self {
+//         Self {
+//             common_states: [StateCallbacks::default(); MAX_STATES],
+//         }
+//     }
+// }
 
 impl StateRegistry {
     pub fn register_state(&mut self, state_id: StateID, state_callbacks: StateCallbacks) {
@@ -30,15 +30,15 @@ impl StateRegistry {
         };
 
         let walking_forward_callbacks = StateCallbacks {
-            on_enter: WalkingForward::on_enter,
-            on_update: WalkingForward::on_update,
-            on_exit: WalkingForward::on_exit,
+            on_enter: WalkingForwards::on_enter,
+            on_update: WalkingForwards::on_update,
+            on_exit: WalkingForwards::on_exit,
         };
 
         let walking_backward_callbacks = StateCallbacks {
-            on_enter: WalkingBackward::on_enter,
-            on_update: WalkingBackward::on_update,
-            on_exit: WalkingBackward::on_exit,
+            on_enter: WalkingBackwards::on_enter,
+            on_update: WalkingBackwards::on_update,
+            on_exit: WalkingBackwards::on_exit,
         };
 
         let crouching_callbacks = StateCallbacks {
@@ -67,8 +67,8 @@ impl StateRegistry {
 
         self.register_state(StateID::Standing, standing_callbacks);
         self.register_state(StateID::Crouching, crouching_callbacks);
-        self.register_state(StateID::WalkingForward, walking_forward_callbacks);
-        self.register_state(StateID::WalkingBackward, walking_backward_callbacks);
+        self.register_state(StateID::WalkingForwards, walking_forward_callbacks);
+        self.register_state(StateID::WalkingBackwards, walking_backward_callbacks);
         self.register_state(StateID::Attack, attack_callbacks);
         self.register_state(StateID::Reaction, reaction_callbacks);
         self.register_state(StateID::GuardReaction, guard_reaction_callbacks);

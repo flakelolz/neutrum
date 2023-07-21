@@ -99,8 +99,8 @@ pub fn update_collision(game_state: &mut GameState) {
                             defender_id: defender_index,
                             hitstun: 25,
                             guardstun: 10,
-                            hitstop: 3,
-                            knockback: 1,
+                            hitstop: 10,
+                            knockback: 5,
                         });
                     }
                 }

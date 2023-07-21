@@ -95,3 +95,18 @@ pub fn get_vulnerable_hitboxes(
     pool_index
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn adding_intvector2d() {
+        let a = IntVector2D { x: 1, y: 2 };
+        let b = IntVector2D { x: 3, y: 4 };
+        let c = a.add(b);
+
+        assert_eq!(c.x, 4);
+        assert_eq!(c.y, 6);
+
+    }
+}
