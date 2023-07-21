@@ -56,10 +56,9 @@ pub fn find_action(
     action_map: &HashMap<String, usize>,
     action_name: String,
 ) -> Option<ActionProperties> {
-    // TODO: I feel like this should be a Result
     match action_map.get(&action_name) {
-        Some(_) => return Some(character.actions[*action_map.get(&action_name).unwrap()].clone()), // TODO: fix clone()
-        None => None,
+        Some(index) => return Some(character.actions[*index].clone()), // TODO: try to fix clone()
+        _ => None,
     }
 }
 

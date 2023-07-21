@@ -12,14 +12,14 @@ mod character_data;
 
 const SCREEN_WIDTH: i32 = 1280;
 const SCREEN_HEIGHT: i32 = 720;
-const MAX_ENTITIES: usize = 2;
+const MAX_ENTITIES: usize = 3;
 const MAX_STATES: usize = 10;
 const MAX_DEVICES: usize = 2;
 
 fn main() {
     let (mut rl, thread) = raylib::init()
         .size(SCREEN_WIDTH, SCREEN_HEIGHT)
-        .title("NEUCH")
+        .title("Neutrum")
         .build();
     rl.set_target_fps(60);
     

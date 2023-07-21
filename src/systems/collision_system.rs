@@ -2,12 +2,12 @@ use crate::{
     character_data::{find_action, ActionProperties},
     components::HitEvent,
     game_state::GameState,
-    math::{do_hiboxes_overlap, get_translated_active_hitboxes},
+    math::{do_hiboxes_overlap, get_translated_active_hitboxes}, MAX_ENTITIES,
 };
 
 pub fn update_collision(game_state: &mut GameState) {
-    let mut atk_count = [0, 0];
-    let mut vul_count = [0, 0];
+    let mut atk_count = [0; MAX_ENTITIES];
+    let mut vul_count = [0; MAX_ENTITIES];
     for entity in 0..game_state.entity_count {
         let entity_offset = game_state.state[entity].context.physics.position;
 
@@ -21,6 +21,10 @@ pub fn update_collision(game_state: &mut GameState) {
 
         let action_name = current_state.get_name();
 
+        if entity >= game_state.game_data.characters.len() {
+            continue;
+        }
+
         let mut action_data = match find_action(
             &game_state.game_data.characters[entity],
             &game_state.game_data.action_maps[entity],
@@ -30,9 +34,6 @@ pub fn update_collision(game_state: &mut GameState) {
             None => ActionProperties::default(),
         };
 
-        if entity >= game_state.game_data.characters.len() {
-            continue;
-        }
 
         {
             let attack = get_translated_active_hitboxes(

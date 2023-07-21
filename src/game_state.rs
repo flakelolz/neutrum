@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use crate::{
     character_data::{generate_action_map, load_asset, CharacterProperties},
-    components::{Hitbox, StateComponent, HitEvent, ReactionComponent},
+    components::{HitEvent, Hitbox, ReactionComponent, StateComponent},
     MAX_ENTITIES,
 };
 
@@ -25,12 +25,23 @@ impl Default for GameState {
             frame_count: 0,
             entity_count: MAX_ENTITIES,
             state: [StateComponent::default(); MAX_ENTITIES],
-            game_data: GameData::init(),
+            game_data: GameData::init(Characters::TestCharacter, Characters::TestCharacter),
             vulnerable_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
             attack_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
             push_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
             hit_events: Vec::with_capacity(MAX_ENTITIES),
             reaction_components: [ReactionComponent::default(); MAX_ENTITIES],
+        }
+    }
+}
+
+pub enum Characters {
+    TestCharacter,
+}
+impl Characters {
+    fn data_path(&self) -> &str {
+        match self {
+            Characters::TestCharacter => "assets/data/character_data.json",
         }
     }
 }
@@ -42,10 +53,9 @@ pub struct GameData {
 }
 
 impl GameData {
-    pub fn init() -> Self {
-        // TODO: Learn to concatenate strings or &str
-        let data1 = load_asset("assets/data/character_data.json");
-        let data2 = load_asset("assets/data/character_data.json");
+    pub fn init(p1: Characters, p2: Characters) -> Self {
+        let data1 = load_asset(p1.data_path());
+        let data2 = load_asset(p2.data_path());
 
         let character1 = match data1 {
             Some(character) => character,
@@ -97,7 +107,7 @@ mod tests {
 
     #[test]
     fn init_data() {
-        let game_data = GameData::init();
+        let game_data = GameData::init(Characters::TestCharacter, Characters::TestCharacter);
 
         assert_eq!(game_data.characters.len(), 2);
         assert_eq!(game_data.action_maps.len(), 2);
