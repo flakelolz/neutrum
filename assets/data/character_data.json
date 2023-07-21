@@ -1,0 +1,346 @@
+{
+    "max_health": 0,
+    "default_pushbox": {
+        "top": 0,
+        "left": 0,
+        "bottom": 0,
+        "right": 0
+    },
+    "actions": [
+        {
+            "name": "standing",
+            "duration": 100,
+            "is_looping": true,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 100,
+                    "hitboxes": [
+                        {
+                            "top": 100000,
+                            "left": -50000,
+                            "bottom": 0,
+                            "right": 100000
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": []
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 1,
+                            "left": 1,
+                            "bottom": 1,
+                            "right": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "crouching",
+            "duration": 0,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": []
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "walking_forward",
+            "duration": 0,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": []
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "walking_backward",
+            "duration": 0,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": []
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "jump",
+            "duration": 0,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "attack",
+            "duration": 30,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 1,
+                    "hitboxes": [
+                        {
+                            "top": 1,
+                            "left": 1,
+                            "bottom": 1,
+                            "right": 1
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 5,
+                    "duration": 4,
+                    "hitboxes": [
+                        {
+                            "top": 120000,
+                            "left": -12000,
+                            "bottom": 0,
+                            "right": 120000
+                        }
+                    ]
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "reaction",
+            "duration": 100,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "guard_reaction",
+            "duration": 0,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

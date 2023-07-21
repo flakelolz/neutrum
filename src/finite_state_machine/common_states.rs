@@ -109,12 +109,17 @@ impl Attack {
     pub fn on_update(context: &mut StateContext) {
         // println!("Attack on_update");
         context.physics.velocity.x = 0;
-        if !context.inputs.a {
+        // if !context.inputs.a {
+        //     context.transition_to_state(StateID::Standing);
+        // }
+
+        if context.timeline.frames_elapsed >= context.state_duration {
             context.transition_to_state(StateID::Standing);
         }
     }
 
     pub fn on_exit(context: &mut StateContext) {
+        println!("duration: {}", context.state_duration);
         println!("Attack on_exit");
         println!("Transition to: {:?}", context.next_state);
     }

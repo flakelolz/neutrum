@@ -1,8 +1,13 @@
-use super::{common_states::*, state_context::StateContext, state_transitions::handle_transition};
+use std::collections::HashMap;
 
-const MAX_STATES: usize = 10;
+use crate::{character_data::CharacterProperties, game_state::GameData};
 
-#[derive(Default, Debug, Copy, Clone)]
+use super::{
+    common_states::*, state_context::StateContext, state_registry::StateRegistry,
+    state_transitions::handle_transition,
+};
+
+#[derive(Default, Debug, Copy, Clone, PartialEq)]
 pub enum StateID {
     #[default]
     Standing,
@@ -15,11 +20,26 @@ pub enum StateID {
     GuardReaction,
 }
 
+impl StateID {
+    pub fn get_name(&self) -> &'static str {
+        match self {
+            Self::Standing => "standing",
+            Self::Crouching => "crouching",
+            Self::WalkingForward => "walking_forward",
+            Self::WalkingBackward => "walking_backward",
+            Self::Jump => "jump",
+            Self::Attack => "attack",
+            Self::Reaction => "reaction",
+            Self::GuardReaction => "guard_reaction",
+        }
+    }
+}
+
 #[derive(Debug, Copy, Clone)]
 pub struct StateCallbacks {
     pub on_enter: fn(&mut StateContext),
-    pub on_exit: fn(&mut StateContext),
     pub on_update: fn(&mut StateContext),
+    pub on_exit: fn(&mut StateContext),
 }
 
 impl Default for StateCallbacks {
@@ -32,76 +52,6 @@ impl Default for StateCallbacks {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
-pub struct StateRegistry {
-    pub common_states: [StateCallbacks; MAX_STATES],
-}
-
-impl Default for StateRegistry {
-    fn default() -> Self {
-        Self {
-            common_states: [StateCallbacks::default(); MAX_STATES],
-        }
-    }
-}
-
-impl StateRegistry {
-    pub fn register_state(&mut self, state_id: StateID, state_callbacks: StateCallbacks) {
-        self.common_states[state_id as usize] = state_callbacks;
-    }
-    pub fn init_states(&mut self) {
-        let standing_callbacks = StateCallbacks {
-            on_enter: Standing::on_enter,
-            on_update: Standing::on_update,
-            on_exit: Standing::on_exit,
-        };
-
-        let walking_forward_callbacks = StateCallbacks {
-            on_enter: WalkingForward::on_enter,
-            on_update: WalkingForward::on_update,
-            on_exit: WalkingForward::on_exit,
-        };
-
-        let walking_backward_callbacks = StateCallbacks {
-            on_enter: WalkingBackward::on_enter,
-            on_update: WalkingBackward::on_update,
-            on_exit: WalkingBackward::on_exit,
-        };
-
-        let crouching_callbacks = StateCallbacks {
-            on_enter: Crouching::on_enter,
-            on_update: Crouching::on_update,
-            on_exit: Crouching::on_exit,
-        };
-
-        let attack_callbacks = StateCallbacks {
-            on_enter: Attack::on_enter,
-            on_update: Attack::on_update,
-            on_exit: Attack::on_exit,
-        };
-
-        let reaction_callbacks = StateCallbacks {
-            on_enter: Reaction::on_enter,
-            on_update: Reaction::on_update,
-            on_exit: Reaction::on_exit,
-        };
-
-        let guard_reaction_callbacks = StateCallbacks {
-            on_enter: GuardReaction::on_enter,
-            on_update: GuardReaction::on_update,
-            on_exit: GuardReaction::on_exit,
-        };
-
-        self.register_state(StateID::Standing, standing_callbacks);
-        self.register_state(StateID::Crouching, crouching_callbacks);
-        self.register_state(StateID::WalkingForward, walking_forward_callbacks);
-        self.register_state(StateID::WalkingBackward, walking_backward_callbacks);
-        self.register_state(StateID::Attack, attack_callbacks);
-        self.register_state(StateID::Reaction, reaction_callbacks);
-        self.register_state(StateID::GuardReaction, guard_reaction_callbacks);
-    }
-}
-
 #[derive(Default, Debug, Clone, Copy)]
 pub struct StateMachineProcessor {
     pub registry: StateRegistry,
@@ -109,11 +59,29 @@ pub struct StateMachineProcessor {
 }
 
 impl StateMachineProcessor {
-    pub fn update_state(&mut self, context: &mut StateContext) {
+    pub fn update_state(
+        &mut self,
+        context: &mut StateContext,
+        action_data: &CharacterProperties,
+        action_map: &HashMap<String, usize>,
+    ) {
         let current_state = self.registry.common_states[self.current_state as usize];
 
         (current_state.on_update)(context);
 
-        handle_transition(self, context);
+        handle_transition(self, context, action_data, &action_map);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn state_name() {
+        let fsm = StateMachineProcessor::default();
+        assert_eq!(fsm.current_state, StateID::Standing);
+        assert_eq!(fsm.current_state.get_name(), "standing");
+        assert_eq!(StateID::Reaction.get_name(), "reaction");
     }
 }

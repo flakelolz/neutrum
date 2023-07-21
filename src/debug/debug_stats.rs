@@ -1,4 +1,3 @@
-#![allow(unused)]
 use crate::{game_state::GameState, math::world_to_screen};
 use raylib::prelude::*;
 
@@ -8,6 +7,8 @@ pub fn show_debug_stats(d: &mut RaylibDrawHandle, game_state: &mut GameState) {
     show_inputs(d, game_state);
 
     show_position(d, game_state);
+
+    show_state(d, game_state);
 
     let x = world_to_screen(game_state.state[1].context.physics.position.x) as f32;
     let y = world_to_screen(game_state.state[1].context.physics.position.y) as f32;
@@ -35,4 +36,14 @@ fn show_position(d: &mut RaylibDrawHandle, game_state: &mut GameState) {
     let pos_s = &world_to_screen(game_state.state[0].context.physics.position.x).to_string();
     let pos_i = &world_to_screen(game_state.state[0].context.physics.position.x);
     d.draw_text(pos_s, *pos_i, 25, 10, Color::WHITE);
+}
+
+fn show_state(d: &mut RaylibDrawHandle, game_state: &mut GameState) {
+    let state = game_state.state[0].processor.current_state.get_name();
+    let x_pos = world_to_screen(game_state.state[0].context.physics.position.x);
+    let y_pos = world_to_screen(game_state.state[0].context.physics.position.y);
+
+    let timeline = game_state.state[0].context.timeline.frames_elapsed.to_string();
+    d.draw_text(timeline.as_str(), x_pos, y_pos - 280, 20, Color::WHITE);
+    d.draw_text(state, x_pos, y_pos - 250, 20, Color::WHITE);
 }

@@ -4,25 +4,20 @@ use crate::{
     configs::input_config::PlayerInput,
     debug::debug_stats::show_debug_stats,
     game_state::GameState,
+    math::IntVector2D,
     rendering::render_player,
     systems::{
         action_system::update_actions, input_system::update_inputs, physics_system::update_physics,
-    }, math::IntVector2D,
+    },
 };
-#[allow(unused_variables)]
-pub fn game_loop(
-    rl: &mut RaylibHandle,
-    thread: RaylibThread,
-    screen_width: i32,
-    screen_height: i32,
-) {
+pub fn game_loop(rl: &mut RaylibHandle, thread: RaylibThread) {
     const P1: usize = 0;
     const P2: usize = 1;
-    let texture = rl
-        .load_texture(&thread, "assets/character.png")
-        .expect("texture not found");
+    let texture = rl.load_texture(&thread, "assets/sprites/character.png");
     let mut game_state = GameState::default();
-    let input_config = PlayerInput::default();
+    let mut input_config = PlayerInput::default();
+    input_config.keybard[P2].set_p2();
+
     game_state.state[P1].processor.registry.init_states();
     game_state.state[P2].processor.registry.init_states();
 
