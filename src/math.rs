@@ -23,6 +23,11 @@ pub fn world_to_screen(coordinate: i32) -> i32 {
     coordinate / 1000
 }
 
+// Screen to world conversion
+pub fn screen_to_world(coordinate: i32) -> i32 {
+    coordinate * 1000
+}
+
 pub fn translate_hitbox(hitbox: Hitbox, offset: IntVector2D) -> Hitbox {
     Hitbox {
         left: (hitbox.left + offset.x),

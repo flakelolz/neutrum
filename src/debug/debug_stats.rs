@@ -1,4 +1,4 @@
-use crate::{game_state::GameState, math::world_to_screen};
+use crate::{game_state::GameState, math::world_to_screen, GROUND, SCREEN_WIDTH};
 use raylib::prelude::*;
 
 pub fn show_debug_stats(d: &mut RaylibDrawHandle, game_state: &mut GameState, player: usize) {
@@ -10,9 +10,9 @@ pub fn show_debug_stats(d: &mut RaylibDrawHandle, game_state: &mut GameState, pl
 
     show_state(d, game_state, player);
 
-    // let x = world_to_screen(game_state.state[1].context.physics.position.x) as f32;
-    // let y = world_to_screen(game_state.state[1].context.physics.position.y) as f32;
-    // d.draw_circle(x as i32, y as i32, 5.0, Color::GREEN);
+    show_velocity(d, game_state, player);
+
+    d.draw_line(0, GROUND, SCREEN_WIDTH, GROUND, Color::WHITE);
 }
 
 fn show_frame_count(d: &mut RaylibDrawHandle, game_state: &mut GameState) {
@@ -39,7 +39,7 @@ fn show_position(d: &mut RaylibDrawHandle, game_state: &mut GameState, player: u
     // Show position
     let pos_s = &world_to_screen(game_state.state[player].context.physics.position.x).to_string();
     let pos_i = &world_to_screen(game_state.state[player].context.physics.position.x);
-    d.draw_text(pos_s, *pos_i, 25, 10, Color::WHITE);
+    d.draw_text(pos_s, *pos_i, 20, 10, Color::WHITE);
 }
 
 fn show_state(d: &mut RaylibDrawHandle, game_state: &mut GameState, player: usize) {
@@ -52,6 +52,16 @@ fn show_state(d: &mut RaylibDrawHandle, game_state: &mut GameState, player: usiz
         .timeline
         .frames_elapsed
         .to_string();
-    d.draw_text(timeline.as_str(), x_pos, y_pos - 280, 20, Color::WHITE);
+    d.draw_text(&timeline, x_pos, y_pos - 280, 20, Color::WHITE);
     d.draw_text(state, x_pos, y_pos - 250, 20, Color::WHITE);
+}
+
+fn show_velocity(d: &mut RaylibDrawHandle, game_state: &mut GameState, player: usize) {
+
+    let x_vel = &game_state.state[player].context.physics.velocity.x.to_string();
+    let y_vel = &game_state.state[player].context.physics.velocity.y.to_string();
+    let x_pos = world_to_screen(game_state.state[player].context.physics.position.x);
+    let y_pos = world_to_screen(game_state.state[player].context.physics.position.y);
+    d.draw_text(x_vel, x_pos, y_pos - 300, 20, Color::PINK);
+    d.draw_text(y_vel, x_pos, y_pos - 320, 20, Color::LIME);
 }

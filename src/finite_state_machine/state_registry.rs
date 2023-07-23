@@ -47,10 +47,22 @@ impl StateRegistry {
             on_exit: Crouching::on_exit,
         };
 
+        let jumping_callbacks = StateCallbacks {
+            on_enter: Jump::on_enter,
+            on_update: Jump::on_update,
+            on_exit: Jump::on_exit,
+        };
+
         let attack_callbacks = StateCallbacks {
             on_enter: Attack::on_enter,
             on_update: Attack::on_update,
             on_exit: Attack::on_exit,
+        };
+
+        let air_attack_callbacks = StateCallbacks {
+            on_enter: AirAttack::on_enter,
+            on_update: AirAttack::on_update,
+            on_exit: AirAttack::on_exit,
         };
 
         let reaction_callbacks = StateCallbacks {
@@ -69,7 +81,9 @@ impl StateRegistry {
         self.register_state(StateID::Crouching, crouching_callbacks);
         self.register_state(StateID::WalkingForwards, walking_forward_callbacks);
         self.register_state(StateID::WalkingBackwards, walking_backward_callbacks);
+        self.register_state(StateID::Jump, jumping_callbacks);
         self.register_state(StateID::Attack, attack_callbacks);
+        self.register_state(StateID::AirAttack, air_attack_callbacks);
         self.register_state(StateID::Reaction, reaction_callbacks);
         self.register_state(StateID::GuardReaction, guard_reaction_callbacks);
     }

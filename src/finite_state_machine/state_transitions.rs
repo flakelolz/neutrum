@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::character_data::{find_action, ActionProperties, CharacterProperties};
+use crate::{character_data::{find_action, ActionProperties, CharacterProperties}, math::screen_to_world, GROUND};
 
 use super::{
     state_context::StateContext,
@@ -27,13 +27,7 @@ pub fn handle_transition(
     if context.timeline.frames_elapsed >= action.duration {
         if action.is_looping {
             context.timeline.frames_elapsed = 0;
-        } else if !context.transition {
-            if context.physics.position.y > 0 {
-                // context.transition_to_state(StateID::Jump);
-            } else {
-                context.transition_to_state(StateID::Standing);
-            }
-        }
+        } 
     }
 
     if context.transition {
@@ -76,6 +70,19 @@ pub fn common_jump_transitions(context: &mut StateContext) -> bool {
         return true;
     }
     return false;
+}
+
+pub fn common_to_idle_transitions(context: &mut StateContext) {
+    if common_transitions(context) {
+        return;
+    }
+    if context.physics.position.y > screen_to_world(GROUND) {
+        context.transition_to_state(StateID::Jump);
+    }
+    else {
+        context.transition_to_state(StateID::Standing);
+    }
+    context.transition = true;
 }
 
 pub fn common_transitions(context: &mut StateContext) -> bool {

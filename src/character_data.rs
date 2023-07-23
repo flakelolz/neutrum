@@ -4,6 +4,26 @@ use crate::components::{Hitbox, HitboxGroup};
 
 use serde::{Deserialize, Serialize};
 
+pub enum Characters {
+    TestCharacter,
+    TestCharacter2,
+}
+impl Characters {
+    pub fn data_path(&self) -> &str {
+        match self {
+            Characters::TestCharacter => "assets/data/character_data.json",
+            Characters::TestCharacter2 => "assets/data/character_data.json",
+        }
+    }
+
+    pub fn sprite_path(&self) -> &str {
+        match self {
+            Characters::TestCharacter => "assets/sprites/character.png",
+            Characters::TestCharacter2 => "assets/sprites/Player Crouch-Idle.png",
+        }
+    }
+}
+
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct ActionProperties {
     pub name: String,

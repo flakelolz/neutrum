@@ -61,7 +61,7 @@ pub struct TimelineComponent {
 #[derive(Default, Debug, Clone, Copy)]
 pub struct ReactionComponent {
     pub hitstun: i32,
-    pub guardstud: i32,
+    pub guardstun: i32,
     pub hitstop: i32,
     pub knockback: i32,
     pub attack_has_hit: bool,

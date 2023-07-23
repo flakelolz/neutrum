@@ -6,6 +6,7 @@ use crate::{
 };
 
 pub fn update_collision(game_state: &mut GameState) {
+    // WARN: I need to re-think all of this, but it's working for now.
     let mut atk_count = [0; MAX_ENTITIES];
     let mut vul_count = [0; MAX_ENTITIES];
     for entity in 0..game_state.entity_count {
@@ -99,8 +100,8 @@ pub fn update_collision(game_state: &mut GameState) {
                             attacker_id: attacker_index,
                             defender_id: defender_index,
                             hitstun: 25,
-                            guardstun: 10,
-                            hitstop: 10,
+                            guardstun: 8,
+                            hitstop: 8,
                             knockback: 5,
                         });
                     }

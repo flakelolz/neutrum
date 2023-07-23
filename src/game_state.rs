@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use crate::{
-    character_data::{generate_action_map, load_asset, CharacterProperties},
+    character_data::{generate_action_map, load_asset, CharacterProperties, Characters},
     components::{HitEvent, Hitbox, ReactionComponent, StateComponent},
     MAX_ENTITIES,
 };
@@ -25,23 +25,12 @@ impl Default for GameState {
             frame_count: 0,
             entity_count: MAX_ENTITIES,
             state: [StateComponent::default(); MAX_ENTITIES],
-            game_data: GameData::init(Characters::TestCharacter, Characters::TestCharacter),
+            game_data: GameData::init(Characters::TestCharacter, Characters::TestCharacter2),
             vulnerable_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
             attack_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
             push_hitbox_scratch: [[Hitbox::default(); 32]; MAX_ENTITIES],
             hit_events: Vec::with_capacity(MAX_ENTITIES),
             reaction_components: [ReactionComponent::default(); MAX_ENTITIES],
-        }
-    }
-}
-
-pub enum Characters {
-    TestCharacter,
-}
-impl Characters {
-    fn data_path(&self) -> &str {
-        match self {
-            Characters::TestCharacter => "assets/data/character_data.json",
         }
     }
 }

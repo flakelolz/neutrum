@@ -15,6 +15,7 @@ pub enum StateID {
     WalkingBackwards,
     Jump,
     Attack,
+    AirAttack,
     Reaction,
     GuardReaction,
     #[default]
@@ -31,6 +32,7 @@ impl StateID {
             Self::WalkingBackwards => "WalkingBackwards",
             Self::Jump => "Jump",
             Self::Attack => "Attack",
+            Self::AirAttack => "AirAttack",
             Self::Reaction => "Reaction",
             Self::GuardReaction => "GuardReaction",
             Self::Nothing => "Nothing",

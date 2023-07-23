@@ -262,6 +262,53 @@
             ]
         },
         {
+            "name": "AirAttack",
+            "duration": 30,
+            "is_looping": false,
+            "vulnerable_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 1,
+                    "hitboxes": [
+                        {
+                            "top": 1,
+                            "left": 1,
+                            "bottom": 1,
+                            "right": 1
+                        }
+                    ]
+                }
+            ],
+            "attack_hitbox_groups": [
+                {
+                    "start_frame": 6,
+                    "duration": 10,
+                    "hitboxes": [
+                        {
+                            "top": 120000,
+                            "left": -12000,
+                            "bottom": 0,
+                            "right": 120000
+                        }
+                    ]
+                }
+            ],
+            "push_hitbox_groups": [
+                {
+                    "start_frame": 0,
+                    "duration": 0,
+                    "hitboxes": [
+                        {
+                            "top": 0,
+                            "left": 0,
+                            "bottom": 0,
+                            "right": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Reaction",
             "duration": 100,
             "is_looping": false,
